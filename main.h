@@ -13,18 +13,18 @@
 typedef struct format
 {
 	char fmt;
-	void (*print_function)(va_list pars, int *);
-}fmt;
+	int (*print_function)(va_list pars, int *);
+} fmt;
 
 int _printf(const char *format, ...);
 
-void print_str(va_list pars, int *);
+int print_str(va_list pars, int *);
 
-void print_ch(va_list args, int *);
+int print_ch(va_list args, int *);
 
-void binconv(va_list args, int *count);
+int binconv(va_list args, int *count);
 
-void print_percent(va_list, int *);
+int print_percent(va_list, int *);
 
 void printer(char *, int);
 #endif

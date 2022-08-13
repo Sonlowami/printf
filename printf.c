@@ -7,7 +7,7 @@
  */
 int _printf(const char *format, ...)
 {
-	int i, count, b_index;
+	int i, count, b_index, j;
 	va_list args;
 	/*Create an array to hold format string*/
 	char fm_str[BUFF];
@@ -21,20 +21,16 @@ int _printf(const char *format, ...)
 	if (!format)
 		return (-1);
 	va_start(args, format);
-	count = 0;
-	for (i = 0, b_index = 0; format[i] != '\0'; i++)
+	for (i = 0, b_index = 0, count = 0; format[i] != '\0'; i++)
 	{
 		if (format[i] != '%')
 		{
-			fm_str[b_index] = format[i];
-			printer(fm_str, b_index);
+			fm_str[b_index++] = format[i];
+			printer(fm_str, b_index - 1);
 			count++;
-			b_index++;
 		}
 		else
 		{
-			int j;
-
 			for (j = 0; fmt_and_fx + j; j++)
 			{
 				if (format[i + 1] == fmt_and_fx[j].fmt)
@@ -43,7 +39,6 @@ int _printf(const char *format, ...)
 					break;
 				}
 			}
-		
 			i++;
 		}
 	}
@@ -58,5 +53,5 @@ int _printf(const char *format, ...)
  */
 void printer(char *fm_str, int index)
 {
-	write (1, fm_str + index, 1);
+	write(1, fm_str + index, 1);
 }

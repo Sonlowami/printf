@@ -4,21 +4,26 @@
  * print_ch - print single char at a time
  * @args: list of runtime arguments
  * @count: pointer to count of printed bytes
+ *
+ * Return: 0
  */
-void print_ch(va_list args, int *count)
+int print_ch(va_list args, int *count)
 {
 	int x;
 
 	x = va_arg(args, int);
 	write(1, &x, 1);
 	(*count)++;
+	return (0);
 }
 /**
  * print_str - print a string parameter
  * @pars: the list of variable type arguments
  * @count: pointer to number of chars printed so far
+ *
+ * Return: 0
  */
-void print_str(va_list pars, int *count)
+int print_str(va_list pars, int *count)
 {
 	char *x;
 
@@ -32,6 +37,7 @@ void print_str(va_list pars, int *count)
 			x++;
 		}
 	}
+	return (0);
 }
 
 /**
@@ -39,8 +45,10 @@ void print_str(va_list pars, int *count)
  * @args: list of runtime arguments
  * @count: pointer to number of bytes computed in the
  *	calling function
+ *
+ *Return: 0
  */
-void binconv(va_list args, int *count)
+int binconv(va_list args, int *count)
 {
 	int i, x;
 	char bits[100];
@@ -57,18 +65,22 @@ void binconv(va_list args, int *count)
 		printer(bits, i);
 		(*count)++;
 	}
+	return (0);
 }
 /**
  * print_percent - print a percent sign
- * @list - a list of runtime arguments
+ * @list: a list of runtime arguments
  * @count: pointer to number of chars printed
+ *
+ * Return: 0
  */
-void print_percent(va_list list, int *count)
+int print_percent(va_list list, int *count)
 {
 	char x;
-	
+
 	(void)list;
 	x = '%';
-	write (1, &x, 1);
+	write(1, &x, 1);
 	(*count)++;
+	return (0);
 }
