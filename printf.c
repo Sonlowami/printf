@@ -16,6 +16,7 @@ int _printf(const char *format, ...)
 		{'s', print_str},
 		{'b', binconv},
 		{'%', print_percent}
+		{'i' print_int}
 	};
 
 	if (!format)

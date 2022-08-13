@@ -27,4 +27,12 @@ void binconv(va_list args, int *count);
 void print_percent(va_list, int *);
 
 void printer(char *, int);
+
+int print_dec(va_list args);
+
+int print_int(va_list args);
+
+int _putchar(char cHar);
+
+
 #endif
