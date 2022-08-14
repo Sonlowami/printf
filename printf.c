@@ -12,11 +12,9 @@ int _printf(const char *format, ...)
 	/*Create an array to hold format string*/
 	char fm_str[BUFF];
 	fmt fmt_and_fx[] = {
-		{'c', print_ch},
-		{'s', print_str},
-		{'b', binconv},
-		{'%', print_percent}
-		{'i' print_int}
+		{'c', print_ch}, {'s', print_str},
+		{'b', binconv}, {'%', print_percent},
+		{'i', print_int}, {'p', print_mem}, {'r', print_rot13}
 	};
 
 	if (!format)
