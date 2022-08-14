@@ -6,11 +6,14 @@
 #include <stddef.h>
 #include <stdarg.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #define BUFF 1024
 
 /**
- * fmt - typedef of struct format that relates a format
+ * struct format - print functions
+ * @pars: va_list of parameters
+ * @fmt: typedef of struct format that relates a format
  *	specifier to the function it calls
  */
 typedef struct format
@@ -31,9 +34,17 @@ int print_percent(va_list, int *);
 
 void printer(char *, int);
 
-int print_dec(va_list args);
-
 int print_int(va_list args, int *);
+
+int print_dec(va_list args, int *count);
+
+int print_unsigned(va_list args, int *count);
+
+int print_oct(va_list ap, int *count);
+
+int print_hex(va_list ap, int *count);
+
+int print_HEX(va_list ap, int *count);
 
 int _putchar(char cHar);
 
