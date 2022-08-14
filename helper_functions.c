@@ -28,11 +28,18 @@ int print_str(va_list pars, int *count)
 	char *x;
 
 	x = va_arg(pars, char *);
-	if (x != NULL)
+	if (x == NULL)
+	{
+		char *nil = "(null)";
+
+		write(1, nil, 6);
+		*count += 6;
+	}
+	else
 	{
 		while (*x != '\0')
 		{
-			write(1, x, 1);
+			_putchar(*x);
 			(*count)++;
 			x++;
 		}
@@ -80,7 +87,51 @@ int print_percent(va_list list, int *count)
 
 	(void)list;
 	x = '%';
-	write(1, &x, 1);
+	_putchar(x);
 	(*count)++;
 	return (0);
 }
+
+/**
+ * print_mem - print memory address
+ * @list: list of runtime arguments
+ * @count: address of memory containing number of
+ * printed bytes so far
+ *
+ * Return: 0
+ */
+int print_mem(va_list list, int *count)
+{
+	char address[BUFF];
+	unsigned long int x, mod, i;
+	char hex[] = "0123456789abcdef";
+
+	x = va_arg(list, unsigned long int);
+	if (!x)
+	{
+		char *null = "(nil)";
+
+		write(1, null, 5);
+		*count += 5;
+	}
+	else
+	{
+		_putchar('0');
+		_putchar('x');
+		*count += 2;
+		for (i = 0; x > 0; x /= 16)
+		{
+			mod = x % 16;
+			address[i++] = hex[mod];
+		}
+		for (i -= 1;; i--)
+		{
+			_putchar(address[i]);
+			(*count)++;
+			if (address + i == address)
+				break;
+		}
+	}
+	return (0);
+}
+

@@ -14,7 +14,7 @@ int _printf(const char *format, ...)
 	fmt fmt_and_fx[] = {
 		{'c', print_ch}, {'s', print_str},
 		{'b', binconv}, {'%', print_percent},
-		{'i', print_int}, {'p', print_mem}, {'r', print_rot13}
+		{'i', print_int}, {'p', print_mem}, {'r', print_rot13},
 		{'c', print_ch}, {'s', print_str},
 		{'b', binconv},	{'%', print_percent},
 		{'i', print_int}, {'d', print_dec},

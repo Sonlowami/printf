@@ -2,7 +2,7 @@
 /**
  * print_oct - prints an octal number.
  * @ap: arguments.
- * @*count: character to be printed
+ * @count: character to be printed
  * Return: counter.
  */
 int print_oct(va_list ap, int *count)
@@ -38,6 +38,7 @@ int print_oct(va_list ap, int *count)
 /**
  * print_hex - prints an hexdecimal number.
  * @ap: arguments.
+ * @count: number of bytes printed so far
  * Return: counter.
 */
 int print_hex(va_list ap, int *count)
@@ -75,6 +76,7 @@ int print_hex(va_list ap, int *count)
 /**
  * print_HEX - prints an hexdecimal number.
  * @ap: arguments.
+ * @count: number of bytes printed so far
  * Return: counter.
 */
 int print_HEX(va_list ap, int *count)
@@ -105,6 +107,6 @@ int print_HEX(va_list ap, int *count)
 		_putchar(array[i] + '0');
 	}
 	free(array);
-*count += counter;
+	*count += counter;
 	return (counter);
 }
