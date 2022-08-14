@@ -28,6 +28,9 @@ int print_percent(va_list, int *);
 
 void printer(char *, int);
 
+int print_int(va_list args, int *count);
+
+
 int _putchar(char cHar);
 
 
