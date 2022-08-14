@@ -18,7 +18,10 @@ int _printf(const char *format, ...)
 		{'%', print_percent},
 		{'i', print_int},
 		{'d', print_dec},
-		{'u', print_unsigned}
+		{'u', print_unsigned},
+		{'o', print_oct},
+		{'x', print_hex},
+		{'X', print_HEX}
 	};
 
 	if (!format)

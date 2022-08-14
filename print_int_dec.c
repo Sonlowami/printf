@@ -55,9 +55,8 @@ int print_int(va_list args, int *count)
 		}
 	}
 _putchar(last + '0');
-write(1, &i, 1);
 *count += i;
-return (0);
+return (i);
 }
 
 /**
@@ -101,9 +100,8 @@ int print_dec(va_list args, int *count)
 		}
 	}
 _putchar(last + '0');
-write(1, &i, 1);
 *count += i;
-return (0);
+return (i);
 }
 
 int print_unsigned(va_list args, int *count)
@@ -141,7 +139,6 @@ int print_unsigned(va_list args, int *count)
 		}
 	}
 	_putchar(last + '0');
-write(1, &i, 1);
 *count += i;
-	return (0);
+	return (i);
 }
