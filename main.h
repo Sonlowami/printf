@@ -7,7 +7,9 @@
 #define BUFF 1024
 
 /**
- * fmt - typedef of struct format that relates a format
+ * struct format - print functions
+ * @pars: va_list of parameters
+ * @fmt: typedef of struct format that relates a format
  *	specifier to the function it calls
  */
 typedef struct format
@@ -30,6 +32,9 @@ void printer(char *, int);
 
 int print_int(va_list args, int *count);
 
+int print_dec(va_list args, int *count);
+
+int print_unsigned(va_list args, int *count);
 
 int _putchar(char cHar);
 

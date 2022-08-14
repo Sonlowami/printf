@@ -54,18 +54,18 @@ int print_int(va_list args, int *count)
 			i++;
 		}
 	}
-	_putchar(last + '0');
-	write(1, &i, 1);
-    *count += i;
-	return (0);
+_putchar(last + '0');
+write(1, &i, 1);
+*count += i;
+return (0);
 }
 
 /**
  * print_dec - prints decimal
  * @args: argument to print
  * Return: number of characters printed
-
-int print_dec(va_list args)
+*/
+int print_dec(va_list args, int *count)
 {
 	int n = va_arg(args, int);
 	int num, last = n % 10, digit;
@@ -100,11 +100,13 @@ int print_dec(va_list args)
 			i++;
 		}
 	}
-	_putchar(last + '0');
-
-	return (i);
+_putchar(last + '0');
+write(1, &i, 1);
+*count += i;
+return (0);
 }
-int print_unsigned(va_list args)
+
+int print_unsigned(va_list args, int *count)
 {
 	unsigned int n = va_arg(args, unsigned int);
 	int num, last = n % 10, digit, exp = 1;
@@ -139,7 +141,7 @@ int print_unsigned(va_list args)
 		}
 	}
 	_putchar(last + '0');
-
-	return (i);
+write(1, &i, 1);
+*count += i;
+	return (0);
 }
-*/
