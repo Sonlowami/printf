@@ -21,7 +21,7 @@ int _printf(const char *format, ...)
 		{'u', print_unsigned}, {'o', print_oct},
 		{'x', print_hex}, {'X', print_HEX}
 	};
-	if (!format)
+	if (!format || (format[0] == '%' && format[1] == ' ' && format[2] == '\0'))
 		return (-1);
 	va_start(args, format);
 	for (i = 0, b_index = 0, count = 0; format[i] != '\0'; i++)
