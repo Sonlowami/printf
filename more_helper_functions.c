@@ -12,7 +12,13 @@ int print_rot13(va_list list, int *count)
 	char *rot, *norm;
 
 	norm = va_arg(list, char *);
-	if (norm != NULL)
+	if (norm == NULL)
+	{
+		rot = "(null)";
+		write(1, rot, 6);
+		*count += 6;
+	}
+	else
 	{
 		int i;
 
@@ -58,6 +64,8 @@ char *rot13(char *str, char *p)
 				break;
 			}
 		}
+		if (str[i] != s[j])
+			p[i] = str[i];
 	}
 	return (p);
 }
