@@ -21,7 +21,6 @@ int _printf(const char *format, ...)
 		{'u', print_unsigned}, {'o', print_oct},
 		{'x', print_hex}, {'X', print_HEX}
 	};
-
 	if (!format)
 		return (-1);
 	va_start(args, format);
@@ -46,8 +45,8 @@ int _printf(const char *format, ...)
 			i++;
 		}
 	}
-	va_end(args);
-	return (count);
+va_end(args);
+return (count);
 }
 
 /**
