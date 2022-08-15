@@ -69,3 +69,46 @@ char *rot13(char *str, char *p)
 	}
 	return (p);
 }
+/**
+ * reverse - check a string and call the print function
+ * @list: list of runtime arguments
+ * @count: the pointer to number of bytes pprinted so far
+ */
+int reverse(va_list list, int *count)
+{
+	char *p;
+
+	p = va_arg(list, char *);
+	if (!p)
+	{
+		char *nil = "(null)";
+		write(1, nil, 6);
+		*count += 6;
+	}
+	else
+	{
+		print_rev(p, count);
+	}
+	return (0);
+}
+
+/**
+ * print_rev - prints a string in the reverse order
+ * @s: the string from the calling function
+ * @x: number of bytes written on screen so far
+ */
+void print_rev(char *s, int *x)
+{
+	int i, j;
+
+	i = 0;
+	while (s[i] != '\0')
+	{
+		i++;
+	}
+
+	for (j = i - 1; j >= 0; j--)
+		_putchar(s[j]);
+	_putchar('\n');
+	*x += i;
+}

@@ -19,8 +19,9 @@ int _printf(const char *format, ...)
 		{'b', binconv},	{'%', print_percent},
 		{'i', print_int}, {'d', print_dec},
 		{'u', print_unsigned}, {'o', print_oct},
-		{'x', print_hex}, {'X', print_HEX}
+		{'x', print_hex}, {'X', print_HEX}, {'r', reverse}
 	};
+
 	if (!format || (format[0] == '%' && format[1] == ' ' && format[2] == '\0'))
 		return (-1);
 	va_start(args, format);

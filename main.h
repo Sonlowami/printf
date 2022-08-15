@@ -52,4 +52,8 @@ int print_mem(va_list list, int *count);
 int print_rot13(va_list list, int *count);
 
 char *rot13(char *str, char *);
+
+int reverse(va_list list, int *count);
+
+void print_rev(char *s, int *x);
 #endif
