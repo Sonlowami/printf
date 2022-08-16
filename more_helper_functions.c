@@ -4,13 +4,15 @@
  * print_rot13 - print rot 13 of a string
  * @list: the array of runtime arguments
  * @count: number of printed bytes so far
+ * @sz: size specifier
  *
  * Return: 0
  */
-int print_rot13(va_list list, int *count)
+int print_rot13(va_list list, int *count, int sz)
 {
 	char *rot, *norm;
-
+	
+	UN_NEEDED(sz);
 	norm = va_arg(list, char *);
 	if (norm == NULL)
 	{
@@ -72,13 +74,15 @@ char *rot13(char *str, char *p)
 /**
  * reverse - check a string and call the print function
  * @list: list of runtime arguments
- * @count: the pointer to number of bytes pprinted so far
+ * @count: the pointer to number of bytes printed so far
+ * @sz: the size specifier(unneeded here)
  */
-int reverse(va_list list, int *count)
+int reverse(va_list list, int *count, int sz)
 {
 	char *p;
 
 	p = va_arg(list, char *);
+	UN_NEEDED(sz);
 	if (!p)
 	{
 		char *nil = "(null)";

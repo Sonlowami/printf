@@ -4,13 +4,15 @@
  * print_ch - print single char at a time
  * @args: list of runtime arguments
  * @count: pointer to count of printed bytes
+ * @sz: size specifier
  *
  * Return: 0
  */
-int print_ch(va_list args, int *count)
+int print_ch(va_list args, int *count, int sz)
 {
 	int x;
 
+	UN_NEEDED(sz);
 	x = va_arg(args, int);
 	write(1, &x, 1);
 	(*count)++;
@@ -20,13 +22,15 @@ int print_ch(va_list args, int *count)
  * print_str - print a string parameter
  * @pars: the list of variable type arguments
  * @count: pointer to number of chars printed so far
+ * @sz: size specifier(unneeded here)
  *
  * Return: 0
  */
-int print_str(va_list pars, int *count)
+int print_str(va_list pars, int *count, int sz)
 {
 	char *x;
-
+	
+	UN_NEEDED(sz);
 	x = va_arg(pars, char *);
 	if (x == NULL)
 	{
@@ -52,14 +56,16 @@ int print_str(va_list pars, int *count)
  * @args: list of runtime arguments
  * @count: pointer to number of bytes computed in the
  *	calling function
+ * @sz: size specifier, unneeded here
  *
  *Return: 0
  */
-int binconv(va_list args, int *count)
+int binconv(va_list args, int *count, int sz)
 {
 	int i, x;
 	char bits[100];
 
+	UN_NEEDED(sz);
 	i = 0;
 	x = va_arg(args, int);
 	while (x > 0)
@@ -78,14 +84,16 @@ int binconv(va_list args, int *count)
  * print_percent - print a percent sign
  * @list: a list of runtime arguments
  * @count: pointer to number of chars printed
+ * @sz: the size specifier
  *
  * Return: 0
  */
-int print_percent(va_list list, int *count)
+int print_percent(va_list list, int *count, int sz)
 {
 	char x;
 
-	(void)list;
+	UN_NEEDED(sz);
+	UN_NEEDED(list);
 	x = '%';
 	_putchar(x);
 	(*count)++;
@@ -97,15 +105,17 @@ int print_percent(va_list list, int *count)
  * @list: list of runtime arguments
  * @count: address of memory containing number of
  * printed bytes so far
+ * @sz: the size specifier
  *
  * Return: 0
  */
-int print_mem(va_list list, int *count)
+int print_mem(va_list list, int *count, int sz)
 {
 	char address[BUFF];
 	unsigned long int x, mod, i;
 	char hex[] = "0123456789abcdef";
 
+	UN_NEEDED(sz);
 	x = va_arg(list, unsigned long int);
 	if (!x)
 	{

@@ -7,7 +7,7 @@
  */
 int _printf(const char *format, ...)
 {
-	int i, count, b_index;
+	int i, count, b_index, size;
 	va_list args;
 	/*Create an array to hold format string*/
 	char fm_str[BUFF];
@@ -25,7 +25,9 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			print_caller(args, &count, format[i + 1]);
+			if ((size = check_size(format[i + 1])) != 0)
+				i++;
+			print_caller(args, &count, format[i + 1], size);
 			i++;
 		}
 	}
@@ -42,8 +44,14 @@ void printer(char *fm_str, int index)
 {
 	write(1, fm_str + index, 1);
 }
-
-void print_caller(va_list list, int *count, char sp)
+/**
+ * print_caller - call the specifier handler
+ * @list: list ofruntime arguments
+ * @count: pointer to number of bytes printed so far
+ * @sp: the format specifier
+ * @sz: the state of the size specifier
+ */
+void print_caller(va_list list, int *count, char sp, int sz)
 {
 	fmt fmt_and_fx[] = {
 		{'c', print_ch}, {'s', print_str},
@@ -61,7 +69,7 @@ void print_caller(va_list list, int *count, char sp)
 	{
 		if (sp == fmt_and_fx[i].fmt)
 		{
-			fmt_and_fx[i].print_function(list, count);
+			fmt_and_fx[i].print_function(list, count, sz);
 			break;
 		}
 	}

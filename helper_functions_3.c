@@ -3,16 +3,17 @@
  * print_oct - prints an octal number.
  * @ap: arguments.
  * @count: character to be printed
+ * @sz: the size specifier
  * Return: counter.
  */
-int print_oct(va_list ap, int *count)
+int print_oct(va_list ap, int *count, int sz)
 {
-	int i;
-	int *array;
-	int counter = 0;
-	unsigned int num = va_arg(ap, unsigned int);
-	unsigned int temp = num;
+	int i, *array, counter = 0;
+	unsigned int num, temp;
 
+	num = va_arg(ap, int);
+	num = convert_size(num, sz);
+	temp = num;
 	while (num / 8 != 0)
 	{
 		num /= 8;
@@ -39,9 +40,10 @@ int print_oct(va_list ap, int *count)
  * print_hex - prints an hexdecimal number.
  * @ap: arguments.
  * @count: number of bytes printed so far
+ * @sz: the size specifier value
  * Return: counter.
 */
-int print_hex(va_list ap, int *count)
+int print_hex(va_list ap, int *count, int sz)
 {
 	int i;
 	int *array;
@@ -49,6 +51,7 @@ int print_hex(va_list ap, int *count)
 	unsigned int num = va_arg(ap, unsigned int);
 	unsigned int temp = num;
 
+	num = convert_size(num, sz);
 	while (num / 16 != 0)
 	{
 		num /= 16;
@@ -77,9 +80,10 @@ int print_hex(va_list ap, int *count)
  * print_HEX - prints an hexdecimal number.
  * @ap: arguments.
  * @count: number of bytes printed so far
+ * @sz: the size specifier value
  * Return: counter.
 */
-int print_HEX(va_list ap, int *count)
+int print_HEX(va_list ap, int *count, int sz)
 {
 	int i;
 	int *array;
@@ -87,6 +91,7 @@ int print_HEX(va_list ap, int *count)
 	unsigned int num = va_arg(ap, unsigned int);
 	unsigned int temp = num;
 
+	num = convert_size(num, sz);
 	while (num / 16 != 0)
 	{
 		num /= 16;

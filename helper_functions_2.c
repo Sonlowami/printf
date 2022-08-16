@@ -17,15 +17,16 @@ int _putchar(char cHar)
  * print_int - prints integer
  * @args: argument to print
  * @count: number of bytes printed so far
+ * @sz: the size parameter for int
  * Return: number of characters printed
  */
-int print_int(va_list args, int *count)
+int print_int(va_list args, int *count, int sz)
 {
-	int n = va_arg(args, int);
-	int num, last = n % 10, digit, exp = 1;
-	int  i = 1;
+	int n, num, last, digit, exp = 1, i = 1;
 
-	(void)count;
+	n = va_arg(args, int);
+	n = convert_size(n, sz);
+	last = n % 10;
 	n = n / 10;
 	num = n;
 
@@ -63,18 +64,20 @@ return (i);
  * print_dec - prints decimal
  * @args: argument to print
  * @count: number of bytes printed so far
+ * @sz: the size specifier
  * Return: number of characters printed
 */
-int print_dec(va_list args, int *count)
+int print_dec(va_list args, int *count, int sz)
 {
-	int n = va_arg(args, int);
-	int num, last = n % 10, digit;
-	int  i = 1;
-	int exp = 1;
+	int n, num, last, digit;
+	int  i = 1, exp = 1;
 
+	n = va_arg(args, int);
+	n = convert_size(n, sz);
+	last = n % 10;
 	n = n / 10;
 	num = n;
-
+	
 	if (last < 0)
 	{
 		_putchar('-');
@@ -109,15 +112,19 @@ return (i);
  * runtime arguments
  * @args: list of runtime arguments
  * @count: number of bytes printed so far
+ * @sz: the size specifier
  *
  * Return: i
  */
-int print_unsigned(va_list args, int *count)
+int print_unsigned(va_list args, int *count, int sz)
 {
-	unsigned int n = va_arg(args, unsigned int);
-	int num, last = n % 10, digit, exp = 1;
+	unsigned int n;
+	int num, last, digit, exp = 1;
 	int  i = 1;
 
+	n = va_arg(args, unsigned int);
+	n = convert_size(n, sz);
+	last = n % 10;
 	n = n / 10;
 	num = n;
 
@@ -150,3 +157,19 @@ int print_unsigned(va_list args, int *count)
 *count += i;
 	return (i);
 }
+/**
+ * convert_size - convert size of a numeric variable
+ * @n: the integer variable
+ * @sz: the new size marker
+ *
+ * Return: the changed variable size
+ */
+int convert_size(int n, int sz)
+{
+	if (sz == 2)
+		return ((short)n);
+	if (sz == 1)
+		return ((long)n);
+	else
+		return (n);
+}		
