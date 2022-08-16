@@ -7,20 +7,10 @@
  */
 int _printf(const char *format, ...)
 {
-	int i, count, b_index, j;
+	int i, count, b_index;
 	va_list args;
 	/*Create an array to hold format string*/
 	char fm_str[BUFF];
-	fmt fmt_and_fx[] = {
-		{'c', print_ch}, {'s', print_str},
-		{'b', binconv}, {'%', print_percent},
-		{'i', print_int}, {'p', print_mem}, {'R', print_rot13},
-		{'c', print_ch}, {'S', print_str},
-		{'b', binconv},	{'%', print_percent},
-		{'i', print_int}, {'d', print_dec},
-		{'u', print_unsigned}, {'o', print_oct},
-		{'x', print_hex}, {'X', print_HEX}, {'r', reverse}
-	};
 
 	if (!format || (format[0] == '%' && format[1] == ' ' && format[2] == '\0'))
 		return (-1);
@@ -35,14 +25,7 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			for (j = 0; fmt_and_fx + j; j++)
-			{
-				if (format[i + 1] == fmt_and_fx[j].fmt)
-				{
-					fmt_and_fx[j].print_function(args, &count);
-					break;
-				}
-			}
+			print_caller(args, &count, format[i + 1]);
 			i++;
 		}
 	}
@@ -58,4 +41,28 @@ return (count);
 void printer(char *fm_str, int index)
 {
 	write(1, fm_str + index, 1);
+}
+
+void print_caller(va_list list, int *count, char sp)
+{
+	fmt fmt_and_fx[] = {
+		{'c', print_ch}, {'s', print_str},
+		{'b', binconv}, {'%', print_percent},
+		{'i', print_int}, {'p', print_mem}, {'R', print_rot13},
+		{'c', print_ch}, {'S', print_str},
+		{'b', binconv},	{'%', print_percent},
+		{'i', print_int}, {'d', print_dec},
+		{'u', print_unsigned}, {'o', print_oct},
+		{'x', print_hex}, {'X', print_HEX}, {'r', reverse}
+	};
+	int i;
+
+	for (i = 0; fmt_and_fx + i; i++)
+	{
+		if (sp == fmt_and_fx[i].fmt)
+		{
+			fmt_and_fx[i].print_function(list, count);
+			break;
+		}
+	}
 }
