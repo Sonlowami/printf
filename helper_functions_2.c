@@ -22,9 +22,10 @@ int _putchar(char cHar)
  */
 int print_int(va_list args, int *count, int sz)
 {
-	int n, num, last, digit, exp = 1, i = 1;
+	int last, digit, i = 1;
+	long int n, num, exp = 1;
 
-	n = va_arg(args, int);
+	n = va_arg(args, long int);
 	n = convert_size(n, sz);
 	last = n % 10;
 	n = n / 10;
@@ -69,10 +70,11 @@ return (i);
 */
 int print_dec(va_list args, int *count, int sz)
 {
-	int n, num, last, digit;
-	int  i = 1, exp = 1;
+	int last, digit;
+	long int n, exp = 1, num;
+	int  i = 1;
 
-	n = va_arg(args, int);
+	n = va_arg(args, long int);
 	n = convert_size(n, sz);
 	last = n % 10;
 	n = n / 10;
@@ -118,11 +120,11 @@ return (i);
  */
 int print_unsigned(va_list args, int *count, int sz)
 {
-	unsigned int n;
-	int num, last, digit, exp = 1;
+	unsigned long int n, num, exp = 1;
+	int last, digit;
 	int  i = 1;
 
-	n = va_arg(args, unsigned int);
+	n = va_arg(args, unsigned long int);
 	n = convert_size(n, sz);
 	last = n % 10;
 	n = n / 10;
@@ -164,12 +166,12 @@ int print_unsigned(va_list args, int *count, int sz)
  *
  * Return: the changed variable size
  */
-int convert_size(int n, int sz)
+long int convert_size(long int n, int sz)
 {
 	if (sz == 2)
 		return ((short)n);
 	if (sz == 1)
-		return ((long)n);
-	else
 		return (n);
+	else
+		return ((int)n);
 }		

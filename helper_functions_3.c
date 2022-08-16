@@ -9,9 +9,9 @@
 int print_oct(va_list ap, int *count, int sz)
 {
 	int i, *array, counter = 0;
-	unsigned int num, temp;
+	unsigned long int num, temp;
 
-	num = va_arg(ap, int);
+	num = va_arg(ap, long int);
 	num = convert_size(num, sz);
 	temp = num;
 	while (num / 8 != 0)
@@ -20,7 +20,7 @@ int print_oct(va_list ap, int *count, int sz)
 		counter++;
 	}
 	counter++;
-	array = malloc(counter * sizeof(int));
+	array = malloc(counter * sizeof(long int));
 
 	for (i = 0; i < counter; i++)
 	{
@@ -48,8 +48,8 @@ int print_hex(va_list ap, int *count, int sz)
 	int i;
 	int *array;
 	int counter = 0;
-	unsigned int num = va_arg(ap, unsigned int);
-	unsigned int temp = num;
+	unsigned long int num = va_arg(ap, unsigned long int);
+	unsigned long int temp = num;
 
 	num = convert_size(num, sz);
 	while (num / 16 != 0)
@@ -58,7 +58,7 @@ int print_hex(va_list ap, int *count, int sz)
 		counter++;
 	}
 	counter++;
-	array = malloc(counter * sizeof(int));
+	array = malloc(counter * sizeof(long int));
 
 	for (i = 0; i < counter; i++)
 	{
@@ -88,8 +88,8 @@ int print_HEX(va_list ap, int *count, int sz)
 	int i;
 	int *array;
 	int counter = 0;
-	unsigned int num = va_arg(ap, unsigned int);
-	unsigned int temp = num;
+	unsigned long int num = va_arg(ap, unsigned long int);
+	unsigned long int temp = num;
 
 	num = convert_size(num, sz);
 	while (num / 16 != 0)
@@ -98,7 +98,7 @@ int print_HEX(va_list ap, int *count, int sz)
 		counter++;
 	}
 	counter++;
-	array = malloc(counter * sizeof(int));
+	array = malloc(counter * sizeof(long int));
 
 	for (i = 0; i < counter; i++)
 	{

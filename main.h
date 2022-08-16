@@ -62,5 +62,5 @@ void print_caller(va_list list, int *count, char sp, int);
 
 int check_size(char c);
 
-int convert_size(int n, int sz);
+long int convert_size(long int n, int sz);
 #endif
