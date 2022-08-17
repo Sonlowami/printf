@@ -57,7 +57,7 @@ void print_caller(va_list list, int *count, char sp, int sz)
 		{'c', print_ch}, {'s', print_str},
 		{'b', binconv}, {'%', print_percent},
 		{'i', print_int}, {'p', print_mem}, {'R', print_rot13},
-		{'c', print_ch}, {'S', print_str},
+		{'c', print_ch}, {'S', print_xcv_string},
 		{'b', binconv},	{'%', print_percent},
 		{'i', print_int}, {'d', print_dec},
 		{'u', print_unsigned}, {'o', print_oct},

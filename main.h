@@ -63,4 +63,9 @@ void print_caller(va_list list, int *count, char sp, int);
 int check_size(char c);
 
 long int convert_size(long int n, int sz);
+
+int print_x(unsigned int num);
+
+int print_xcv_string(va_list ap, int *count);
+
 #endif
