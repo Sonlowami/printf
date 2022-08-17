@@ -150,13 +150,14 @@ int print_x(unsigned int num)
 	free(array);
 	return (counter);
 }
-int print_xcv_string(va_list ap, int *count)
+int print_xcv_string(va_list ap, int *count, int sz)
 {
 	char *s;
 	int i, len = 0;
 	int cast;
 
 	s = va_arg(ap, char *);
+	UN_NEEDED(sz);
 	if (s == NULL)
 		s = "(null)";
 	for (i = 0; s[i] != '\0'; i++)

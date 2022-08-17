@@ -66,6 +66,6 @@ long int convert_size(long int n, int sz);
 
 int print_x(unsigned int num);
 
-int print_xcv_string(va_list ap, int *count);
+int print_xcv_string(va_list ap, int *count, int sz);
 
 #endif
