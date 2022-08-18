@@ -77,7 +77,7 @@ int print_caller(va_list list, int *count, char sp, int sz)
 	};
 	int i;
 
-	for (i = 0; fmt_and_fx + i; i++)
+	for (i = 0; i < 19; i++)
 	{
 		if (sp == fmt_and_fx[i].fmt)
 		{

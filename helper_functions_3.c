@@ -150,6 +150,14 @@ int print_x(unsigned int num)
 	free(array);
 	return (counter);
 }
+/**
+ * print_xcv_string  - handle non-printable characters
+ * @ap: list of runtime arguments
+ * @count: pointer to number of printed bytes already
+ * @sz: the size specifier(nott applicable in this case
+ *
+ * Return: used space
+ */
 int print_xcv_string(va_list ap, int *count, int sz)
 {
 	char *s;
