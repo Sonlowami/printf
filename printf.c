@@ -12,7 +12,8 @@ int _printf(const char *format, ...)
 	/*Create an array to hold format string*/
 	char fm_str[BUFF];
 
-	if (!format || (format[0] == '%' && format[1] == ' ' && format[2] == '\0'))
+	if (!format || (format[0] == '%' && format[1] == '\0') ||
+			(format[0] == '%' && format[1] == ' ' && format[2] == '\0'))
 		return (-1);
 	va_start(args, format);
 	for (i = 0, b_index = 0, count = 0; format[i] != '\0'; i++)
@@ -25,10 +26,19 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			if ((size = check_size(format[i + 1])) != 0)
+			int x;
+
+			size = check_size(format[i + 1]);
+			if (size != 0)
 				i++;
-			print_caller(args, &count, format[i + 1], size);
-			i++;
+			x = print_caller(args, &count, format[i + 1], size);
+			if (x == 1)
+				i++;
+			else
+			{
+				_putchar('%');
+				count++;
+			}
 		}
 	}
 va_end(args);
@@ -45,20 +55,22 @@ void printer(char *fm_str, int index)
 	write(1, fm_str + index, 1);
 }
 /**
- * print_caller - call the specifier handler
- * @list: list ofruntime arguments
+ * print_caller - call the specifier handler* @list: list ofruntime arguments
+ * @list: list of runtime arguments
  * @count: pointer to number of bytes printed so far
  * @sp: the format specifier
  * @sz: the state of the size specifier
+ *
+ * Return: 1 if it finds a match, 0 otherwise
  */
-void print_caller(va_list list, int *count, char sp, int sz)
+int print_caller(va_list list, int *count, char sp, int sz)
 {
 	fmt fmt_and_fx[] = {
 		{'c', print_ch}, {'s', print_str},
 		{'b', binconv}, {'%', print_percent},
 		{'i', print_int}, {'p', print_mem}, {'R', print_rot13},
 		{'c', print_ch}, {'S', print_xcv_string},
-		{'b', binconv},	{'%', print_percent},
+		{'b', binconv}, {'%', print_percent},
 		{'i', print_int}, {'d', print_dec},
 		{'u', print_unsigned}, {'o', print_oct},
 		{'x', print_hex}, {'X', print_HEX}, {'r', reverse}
@@ -70,7 +82,8 @@ void print_caller(va_list list, int *count, char sp, int sz)
 		if (sp == fmt_and_fx[i].fmt)
 		{
 			fmt_and_fx[i].print_function(list, count, sz);
-			break;
+			return (1);
 		}
 	}
+	return (0);
 }

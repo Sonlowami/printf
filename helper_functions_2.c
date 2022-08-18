@@ -79,7 +79,7 @@ int print_dec(va_list args, int *count, int sz)
 	last = n % 10;
 	n = n / 10;
 	num = n;
-	
+
 	if (last < 0)
 	{
 		_putchar('-');
@@ -174,4 +174,4 @@ long int convert_size(long int n, int sz)
 		return (n);
 	else
 		return ((int)n);
-}		
+}

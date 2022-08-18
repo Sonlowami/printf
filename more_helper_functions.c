@@ -11,7 +11,7 @@
 int print_rot13(va_list list, int *count, int sz)
 {
 	char *rot, *norm;
-	
+
 	UN_NEEDED(sz);
 	norm = va_arg(list, char *);
 	if (norm == NULL)
@@ -76,6 +76,8 @@ char *rot13(char *str, char *p)
  * @list: list of runtime arguments
  * @count: the pointer to number of bytes printed so far
  * @sz: the size specifier(unneeded here)
+ *
+ * Return: 0
  */
 int reverse(va_list list, int *count, int sz)
 {
@@ -86,6 +88,7 @@ int reverse(va_list list, int *count, int sz)
 	if (!p)
 	{
 		char *nil = "(null)";
+
 		write(1, nil, 6);
 		*count += 6;
 	}

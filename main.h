@@ -58,7 +58,7 @@ int reverse(va_list list, int *count, int);
 
 void print_rev(char *s, int *x);
 
-void print_caller(va_list list, int *count, char sp, int);
+int print_caller(va_list list, int *count, char sp, int);
 
 int check_size(char c);
 

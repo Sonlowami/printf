@@ -29,7 +29,7 @@ int print_ch(va_list args, int *count, int sz)
 int print_str(va_list pars, int *count, int sz)
 {
 	char *x;
-	
+
 	UN_NEEDED(sz);
 	x = va_arg(pars, char *);
 	if (x == NULL)
